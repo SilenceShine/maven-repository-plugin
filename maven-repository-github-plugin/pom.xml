@@ -9,7 +9,18 @@
         <version>${revision}</version>
     </parent>
 
+    <packaging>maven-plugin</packaging>
+
     <artifactId>maven-repository-github-plugin</artifactId>
 
+    <dependencies>
+        <!-- https://github-api.kohsuke.org/ -->
+        <!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>${github-api.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
