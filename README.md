@@ -18,12 +18,13 @@ maven自定义仓库插件
 ###  pom.xml
 
 ```xml
-<repositories>
+<distributionManagement>
     <repository>
-        <id>io.github.SilenceShine</id>
-        <url>https://raw.githubusercontent.com/SilenceShine/maven-repository/release</url>
+        <id>Local</id>
+        <name>Local Repository</name>
+        <url>file://${project.build.directory}/mvn-repo</url>
     </repository>
-</repositories>
+</distributionManagement>
 ```
 
 ```xml
@@ -54,4 +55,23 @@ maven自定义仓库插件
         </plugin>
     </plugins>
 </build>
+```
+
+## 使用
+
+```xml
+<repositories>
+    <repository>
+        <id>io.github.SilenceShine</id>
+        <url>https://raw.githubusercontent.com/SilenceShine/maven-repository/release</url>
+    </repository>
+</repositories>
+```
+
+```xml
+<dependency>
+    <groupId>io.github.SilenceShine</groupId>
+    <artifactId>shine-framework-core</artifactId>
+    <version>0.3.1</version>
+</dependency>
 ```
