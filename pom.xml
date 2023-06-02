@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -7,8 +7,10 @@
 
     <groupId>io.github.SilenceShine</groupId>
     <artifactId>maven-repository-plugin</artifactId>
+
+    <name>${artifactId}</name>
     <version>${revision}</version>
-    <name>maven-repository-plugin</name>
+
     <description>maven-repository-plugin</description>
     <url>https://github.com/SilenceShine/maven-repository-plugin</url>
 
@@ -22,6 +24,16 @@
         <connection>scm:git:git://github.com/SilenceShine/maven-repository-plugin.git</connection>
         <developerConnection>scm:git:git://github.com/SilenceShine/maven-repository-plugin.git</developerConnection>
     </scm>
+
+    <developers>
+        <developer>
+            <id>SilenceShine</id>
+            <name>SilenceShine</name>
+            <email>xuansy0127@gmail.com</email>
+            <organization>SilenceShine</organization>
+            <organizationUrl>https://github.com/SilenceShine</organizationUrl>
+        </developer>
+    </developers>
 
     <modules>
         <module>maven-repository-github-plugin</module>
@@ -42,15 +54,40 @@
         <maven-repository-github-plugin.version>0.0.1</maven-repository-github-plugin.version>
 
         <github-api.version>1.314</github-api.version>
+        <github-username>SilenceShine</github-username>
+        <github-repository>maven-repository-plugin</github-repository>
     </properties>
 
     <distributionManagement>
         <repository>
-            <id>Local</id>
-            <name>Local Repository</name>
-            <url>file://${project.build.directory}/mvn-repo</url>
+            <id>github</id>
+            <name>GitHub SilenceShine Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/SilenceShine/maven-repository-plugin</url>
         </repository>
     </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>github</id>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://repo1.maven.org/maven2</url>
+                </repository>
+                <repository>
+                    <id>github</id>
+                    <name>SilenceShine maven-repository-plugin Maven Packages</name>
+                    <url>https://maven.pkg.github.com/SilenceShine/maven-repository-plugin</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -117,27 +154,6 @@
                         </execution>
                     </executions>
                 </plugin>
-                <plugin>
-                    <groupId>io.github.SilenceShine</groupId>
-                    <artifactId>maven-repository-github-plugin</artifactId>
-                    <version>${maven-repository-github-plugin.version}</version>
-                    <configuration>
-                        <id>io.github.SilenceShine</id>
-                        <owner>SilenceShine</owner>
-                        <repository>maven-repository</repository>
-                        <branchRelease>release</branchRelease>
-                        <branchSnapshot>snapshot</branchSnapshot>
-                        <message>init maven-repository-github-plugin 0.0.1</message>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>deploy</phase>
-                            <goals>
-                                <goal>github</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -148,10 +164,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>io.github.SilenceShine</groupId>
-                <artifactId>maven-repository-github-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
