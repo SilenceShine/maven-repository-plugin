@@ -1,12 +1,26 @@
 # maven-repository-plugin
+
 maven自定义仓库插件
 
 ## maven-repository-github-plugin
+
+引入包
+
+```xml
+
+<repository>
+    <id>github</id>
+    <name>SilenceShine maven-repository-plugin Maven Packages</name>
+    <url>https://maven.pkg.github.com/SilenceShine/maven-repository-plugin</url>
+</repository>
+```
+
 自定义 github为仓库的插件
 
 ### settings.xml
 
 ```xml
+
 <servers>
     <server>
         <id>io.github.SilenceShine</id>
@@ -15,9 +29,10 @@ maven自定义仓库插件
 </servers>
 ```
 
-###  pom.xml
+### pom.xml
 
 ```xml
+
 <distributionManagement>
     <repository>
         <id>Local</id>
@@ -28,6 +43,7 @@ maven自定义仓库插件
 ```
 
 ```xml
+
 <build>
     <plugins>
         <plugin>
@@ -45,7 +61,7 @@ maven自定义仓库插件
                 <message>init maven-repository-github-plugin 0.0.1</message>
             </configuration>
             <executions>
-                <execution>    
+                <execution>
                     <phase>deploy</phase>
                     <goals>
                         <goal>github</goal>
@@ -60,6 +76,7 @@ maven自定义仓库插件
 ## 使用
 
 ```xml
+
 <repositories>
     <repository>
         <id>io.github.SilenceShine</id>
@@ -69,6 +86,7 @@ maven自定义仓库插件
 ```
 
 ```xml
+
 <dependency>
     <groupId>io.github.SilenceShine</groupId>
     <artifactId>shine-framework-core</artifactId>
